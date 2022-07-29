@@ -1,0 +1,17 @@
+-- At first Import the provided excel sheet into Microsoft SQL Server
+-- Answers:
+--1.Which drink has the highest calories from the dataset ?
+SELECT *
+FROM drinkMenu
+WHERE Calories =(SELECT MAX(Calories) FROM drinkMenu)
+
+--2. What is the average calorie amount for each drink category ?
+SELECT Beverage_category, ROUND( AVG(Calories) , 2) AS Avg_calorie
+FROM drinkMenu
+GROUP BY Beverage_category
+
+--3. Which drinks have below average calorie amount ?
+SELECT * 
+FROM drinkMenu
+WHERE Calories <(SELECT AVG(Calories) FROM drinkMenu)
+
